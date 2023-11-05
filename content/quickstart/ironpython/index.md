@@ -15,20 +15,22 @@ url: "quickstart/ironpython"
 
 ```py
 import clr
-clr.AddReference("ScottPlot.dll")   
+import System
 clr.AddReferenceByPartialName("System.Drawing")
+from System.Drawing import Size,Color,Imaging
+clr.AddReference("ScottPlot.dll")   
 import ScottPlot
 
 dataX = (0, 0, 415, 483, 526, 505, 511, 367, 452, 0)
 dataY = (4209, 3367, 2553, 1960, 1532, 913, 862, 0, 0, -1487)
 
-myPlot = ScottPlot.Plot(500,500)
-myPlot.AddScatter(dataX, dataY)
+myPlot = ScottPlot.Plot(600,600)
+myPlot.AddHorizontalLine(0,color=Color.Black,width=3)
+myPlot.AddVerticalLine(0,color=Color.Black,width=3)
+myPlot.AddScatter(dataX, dataY, color=Color.Blue)
 myPlot.Title("RC Column Interaction Diagram")
 myPlot.XLabel("phi*Mn (kN.m)")
 myPlot.YLabel("phi*Pn (kN)")
-myPlot.AddHorizontalLine(0,width=3)
-myPlot.AddVerticalLine(0,width=3)
 
 myPlot.SaveFig("ironpython.png")
 ```
